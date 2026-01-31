@@ -78,7 +78,31 @@ export default function Dashboard() {
                         {mounted && (
                             <Responsive
                                 className="layout"
-                                layouts={{ lg: layout }}
+                                layouts={{
+                                    lg: layout,
+                                    md: layout,
+                                    sm: layout.map(item => ({
+                                        ...item,
+                                        h: item.i === 'stats-overview' ? 4 : item.h
+                                    })),
+                                    xs: (() => {
+                                        let currentY = 0;
+                                        return [...layout]
+                                            .sort((a, b) => (a.y - b.y) || (a.x - b.x))
+                                            .map(item => {
+                                                const height = item.i === 'stats-overview' ? 9 : item.h;
+                                                const newItem = {
+                                                    ...item,
+                                                    w: 1,
+                                                    x: 0,
+                                                    y: currentY,
+                                                    h: height
+                                                };
+                                                currentY += height;
+                                                return newItem;
+                                            });
+                                    })()
+                                }}
                                 breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
                                 cols={{ lg: 4, md: 4, sm: 2, xs: 1, xxs: 1 }}
                                 rowHeight={50}

@@ -25,7 +25,7 @@ export function RecentActivityWidget() {
                 <CardTitle>Recent Activity</CardTitle>
                 <CreateTaskDialog
                     trigger={
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                        <Button variant="outline" size="icon" className="shrink-0">
                             <Plus className="h-4 w-4" />
                         </Button>
                     }
@@ -47,7 +47,7 @@ export function RecentActivityWidget() {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity text-destructive hover:text-destructive hover:bg-destructive/10"
+                                className="h-8 w-8 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity text-destructive hover:text-destructive hover:bg-destructive/10"
                                 onClick={() => handleDelete(activity.id)}
                             >
                                 <Trash2 className="h-4 w-4" />
